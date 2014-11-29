@@ -1,0 +1,57 @@
+.left_margin {
+  display: inline-block;
+  clear: left;
+  float: left;
+  background-color: white;
+  width: 20vh;
+  height: 100vh;
+}
+
+.right_margin {
+  display: inline-block;
+  clear: right;
+  float: right;
+  background-color: white;
+  width: 20vh;
+  height: 100vh;
+}
+
+.center_content {
+  background-color: gray;
+}
+
+.header {
+  text-align: center;
+  font-family: Garamond, serif;
+  font-size: 3em;
+  font-weight: bold;
+  color: green;
+}
+
+.subtitle {
+  text-align: center;
+  font-family: Verdana, serif;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.date {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+  font-style: italic;
+}
+
+.center_content {
+  text-align: left;
+  font-family: Arial, sans-serif;
+  font-size: 1em;
+}
+
+.line_break {
+  width:100%;
+  background-color: yellow;
+  height:1px;
+  margin-top:5px;
+  margin-bottom:5px;
+}
