@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CSS Classes and IDs</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+
+<body>
+
+  <div class="left_margin"></div>
+  <div class="right_margin"></div>
+
+  <div class="center_content">
+
+   <div class="header">
+      CSS Classes and IDs
+    </div>
+
+    <div class="line_break"></div>
+
+    <div class="subtitle">DBC Technical Blog - Week 2</div>
+
+    <div class="date">November 30, 2014</div>
+
+    <div class="content">
+      <p>This week we learned about two ways to reference HTML elements ("&ltp&gt", "&lth1&gt", "&ltli&gt", etc.) in a stylesheet:</p>
+      <ol>
+        <li>Classes</li>
+        <li>IDs</li>
+      </ol>
+
+      <p>The key distinction and best practice for the two is that classes can be used when there are multiple elements on a page you want styled the same way, whereas IDs can only be used on one instance per page.  An ID would be implemented in HTML as follows:</p>
+
+      <p>"&ltdiv id="item1"&gt&lt/div&gt"</p>
+
+      <p>and referenced in a CSS stylesheet as:</p>
+
+      <p>"#item1 {background-color: blue} "</p>
+
+      <p>And a class would be implemented as:</p>
+
+      <p>"&ltdiv class="style1"&gt&lt/div&gt"</p>
+
+      <p>and referenced in a CSS stylesheet as:</p>
+
+      <p>".style1 {background-color: red} "</p>
+
+      <p>However, there are several interesting nuances, features and best practices worth mentioning:</p>
+
+      <ul>
+        <li>When referencing an ID in a stylesheet, you can add the HTML element to the reference.  So for example, when referencing an ID named "item1" that modifies a "&ltdiv&gt" element, you could call it as "div#item1" instead of simply "#item1".  This has the benefit of making your stylesheet easier to understand, because you will automatically know what element a given ID is intended to modify when reading it.</li>
+        <li>To link to a specific position on a webpage, you can use an ID appended to a URL.  For example, to an ID named "question8" could be used to reference a specific question on a FAQ page, by adding "#question8" to the end of the FAQ URL.  When a user clicks a link to that question, it would immediately bring them to the response no matter where it's located on the page.</li>
+        <li>In general, IDs should be used when you know there is only going to be one instance of that object on a page.  For example, a webpage should generally only have one header and one footer.  It would therefore make sense to style the "&ltdiv&gt" element containing those objects with its own unique "#header" and "#footer" IDs, because there will only be one of each on a page.  A class, meanwhile, would be better suited for something like an "&lth2&gt" object, which may be called upon multiple times in a page.</li>
+        <li>Multiple classes can be used to style an HTML element, but only one ID.  Classes are therefore more versatile, because their properties can be combined when appropriate.</li>
+        <li>When there is a conflict between two styling instructions, the ID styling supercedes the class styling every time.</li>
+        <li>Avoid using either classes or IDs unless you need them.  For example, there is no point in making a "link" class to format how you want your links to display, when you can simply style the "a" element itself.</li>
+
+
+<p>In researching this blog post, I discovered a trend among web developers towards using classes over IDs.  They say that IDs were more important in the old days so JavaScript could use a "GetElementByID" function, but following the advent of jQuery and other modern frameworks, this function is no longer important.  They lament the inability to reuse CSS code on a page if it's attached to an ID, and argue any performance gains from the use of IDs are minimal.  Furthermore they note that using IDs can lead to a downward spiral of increasing specificity, which can unnecessarily complicate code.  I find these arguments compelling, and plan to favor classes in most cases, except when I want the ability link to a specific location on my page.</p>
+
+
+    </div>
+
+  </div>
+
+
+
+</body>
+
+</html>
