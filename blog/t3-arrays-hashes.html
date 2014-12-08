@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ruby Arrays and Hashes</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+
+<body>
+
+  <div class="left_margin"></div>
+  <div class="right_margin"></div>
+
+  <div class="center_content">
+
+   <div class="header">
+      Ruby Arrays and Hashes
+    </div>
+
+    <div class="line_break"></div>
+
+    <div class="subtitle">A Brief Introduction</div>
+
+    <div class="date">December 7, 2014</div>
+
+    <div class="content">
+      <p>
+          Arrays and Hashes are two fundamental types of data structures in Ruby.  Both are indexed collections of information ("objects"), such as a list, and each element of that list can be accessed with a corresponding "key" to identify it.  These are known as "key-value" pairs.  However, there are important differences between arrays and hashes that afford them very different use cases.  An array is generally thought to be more efficient for accessing its comprising elements, but a hash can be much more flexible.
+      </p>
+      <h2>Arrays</h2>
+      <p>
+        The most important thing to understand about an array is that it contains an *ordered* list of information.  This information can be any type of object -- string, integer, boolean value, etc.  Each object in that list represents a "value", and the order or place it falls in that list, represented by an integer, is the "key".  The first value in an array is attached to key "0", the second value attached to key "1", the third value attached to key "2", and so forth.  When calling on a value in an array, then, you would access it by referencing its numerical place in the array -- i.e., its key.
+      </p>
+      <p>
+        Because an array is an ordered list, we can do things to it like reverse its order, or sort it based on certain criteria, using built-in Ruby methods.  You might use an array when you have a list of information you want to store, such as a list of people who have RSVP'd for an upcoming party.  Rather than create a separate variable for the name of each attendee (e.g. "attendee_1 = Bob", "attendee_2 = Mary", etc.), you could add them to a single array.  Each person would occupy one slot in the array, with the first respondent associated with key 0, the second with key 1, and so forth.
+      </p>
+      <h2>Hashes</h2>
+      <p>
+        Unlike an array, the information contained in a hash is unordered.  Where the key in an array must always be an integer, a key in a hash can be represented by any object.  When a hash is enumerated, its values simply appear in the order that its corresponding keys were inserted.  Anything you can do with a hash can generally also be done through an array, but hashes can be easier to maintain and manipulate, hence their appeal.  You would use a hash when you want to map one value to another.  By allowing developers to associate data with words and categories rather than arbitrary numbers, hashes can be much easier to work with in the right circumstances.
+      </p>
+      <p>
+        For example, a hash would be useful for storing information about students in a classroom.  Keys could be represented by students' names, and the values could be represented by their grades on a test, or their birthdays, or any other information.  When accessing the information, a teacher would then only need to know the student's name to see his/her grade, whereas in an array, the teacher would need to remember where that particular student fell in the ordered list, and call upon him/her by that number instead.
+      </p>
+
+    </div>
+
+  </div>
+
+
+
+</body>
+
+</html>
