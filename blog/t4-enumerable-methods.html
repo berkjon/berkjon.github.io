@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>"Map" Enumerable Method</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+
+<body>
+
+  <div class="left_margin"></div>
+  <div class="right_margin"></div>
+
+  <div class="center_content">
+
+   <div class="header">
+      "Map" Enumerable Method
+    </div>
+
+    <div class="line_break"></div>
+
+    <div class="subtitle">A quick look at Ruby's "map" enumerable method</div>
+
+    <div class="date">December 14, 2014</div>
+
+    <div class="content">
+      <p>
+          Ruby's Array and Hash classes both have a long list of built-in methods allowing developers to manipulate and interact with them.  However there is a third collection of methods (i.e. a "module") called <string class="code">Enumerable</string>s that can be "mixed in" with those Classes, and adds a great deal more flexibility and functionality to them.  In this post I will quickly explore one of the most popular <string class="code">Enumerable</string> methods for manipulating data collections, called <string class="code">map</string>.
+      </p>
+      <p>
+        <string class="code_string">Map</string> (and its synonym <string class="code">collect</string>)
+        is used to run a block and return an object (usually either an Array or Hash) containing whatever each block returned.  Here is an example:
+      </p>
+      <p>
+      fib_array = [1, 1, 2, 3, 5, 8, 13, 21, 34]<br />
+      array_new = array_old.map { |x| x+(x/2) }<br />
+      print array_new.join(", ")<br />
+      => 1, 1, 3, 4, 7, 12, 19, 31, 51<br />
+      </p>
+      <p>
+        As we can see, map returned an array containing the result of its block code instructions, which we can then easily set to a new variable for further manipulation.  The original array, <string class="code">fib_array</string>, meanwhile remains untouched.
+      </p>
+      <p>
+        If you are already familiar with Ruby, you may notice <string class="code">map</string> works very similarly to the <string class="code">each</string> method.  Both are frequently used to iterate over arrays and hashes.  The key distinction is that the result after running a block with <string class="code">each</string> is thrown away, whereas <string class="code">map</string> will produce an array containing the results of every pass on the block.  It is also interesting to note that <string class="code">map</string> is a method in the <string class="code">Enumerable</string> mixin, while <string class="code">each</string> is a method in the <string class="code">Array</string> class.  The <string class="code">map</string> implementation is actually based on <string class="code">each</string>, and requires its presence to function properly.
+      </p>
+      <p>
+        To quickly make the comparison using the earlier example, running the same code with Each would result in the following:
+      </p>
+      <p>
+        fib_array = [1, 1, 2, 3, 5, 8, 13, 21, 34]<br />
+        array_new = fib_array.each { |x| x+(x/2) }<br />
+        print array_new.join(", ")<br />
+        =>1, 1, 2, 3, 5, 8, 13, 21, 34<br />
+      </p>
+      <p>
+        Despite running the code block in each iteration, we see that <string class="code">each</string> does not actually modify the underlying element each time.
+      </p>
+      <p>
+        It is also worth mentioning the "destructive" form of <string class="code">map</string>, which is unsurprisingly called <string class="code">map!</string>.  This functions identically to <string class="code">map</string>, except that instead of just returning the output of the block while leaving the original array untouched, <string class="code">map!</string> also modifies the original array as such:
+      </p>
+      <p>
+        fib_array = [1, 1, 2, 3, 5, 8, 13, 21, 34]<br />
+        fib_array.map! { |x| x+(x/2) }<br />
+        print fib_array.join(", ")<br />
+        => 1, 1, 3, 4, 7, 12, 19, 31, 51<br />
+      </p>
+      <p>
+        Our original <string class="code">fib_array</string> has now been changed to reflect the result of the operation we passed through <string class="code">map!</string>.
+
+
+    </div>
+
+  </div>
+
+
+
+</body>
+
+</html>
