@@ -19,6 +19,25 @@ h1 {
   font-size: 300%;
 }
 
+pre {
+  background-color: black;
+  border-style: solid;
+  border-color: Grey;
+  border-width: 4px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+code {
+  color: Grey;
+  font-size: 115%;
+}
+
+nav {
+  padding: 10px;
+  text-align: center;
+}
+
 .quote {
   background-color: #d3dbe8;
 }
@@ -27,6 +46,7 @@ h1 {
   text-align: center;
   font-style: italic;
 }
+
 .quote_source {
   text-align: right;
   padding-right: 40px;
@@ -43,6 +63,10 @@ h3 {
 
 .section_group {
   text-align: center;
+}
+
+.blog_body {
+  text-align: left;
 }
 
 .section {
@@ -62,6 +86,18 @@ img.icon:hover {
   border: 7px solid #5d6277;
 }
 
+img.logo {
+  width: 30px;
+  height: auto;
+}
+
+string.code {
+  background-color: black;
+  color: Grey;
+  font-family: Courier;
+  padding: 0px 4px 2px 4px;
+}
+
 a {
   text-decoration: inherit;
   color: inherit;
@@ -73,14 +109,13 @@ a:hover {
 
 .separator {
   background-color: gray;
-  height: 5px;
+  height: 3px;
   width: auto;
 }
 
 footer {
-  background-color: #5d6277;
-  color: #ffffff;
   font-size: 50%;
   font-weight: lighter;
   text-align: center;
+  padding: 10px 0px 0px 0px;
 }

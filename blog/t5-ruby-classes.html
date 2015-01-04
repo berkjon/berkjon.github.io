@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/default.css" />
+    <title>Ruby Classes</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <header>
+        <h1>Ruby Classes</h1>
+        <h2>A Brief Overview</h2>
+      </header>
+
+      <div class="separator"></div>
+      <nav>
+        <a href="../index.html" alt="Home">Home</a> |
+        <a href="../blog/index.html" alt="Blog">Blog</a> |
+        <a href="../photography/index.html" alt="Photography">Photography</a> |
+        <a href="../travel/index.html" alt="Travel">Travel</a> |
+        <a href="../about/index.html" alt="About">About</a>
+      </nav>
+      <div class="separator"></div>
+
+      <div class="blog_body">
+
+        <p>
+          The easiest way to understand Classes is as a collection of behaviors (or “methods”) used to give characteristics to, and model the behavior of, various objects.  Often classes are used simulate real world things, like dice or pets or the moon, and allow us to interact with them in a digital environment.  When we create a class for these objects, we define what their features are (with as little or much specificity as we like), and can then create new versions (“instances”) of them to play with on the computer.
+        </p>
+        <p>
+          Take the die as an easy example.  It only has a couple relevant characteristics that define its behavior — namely, that it has a certain number of sides, and that rolling it will return only one of those sides, at random.  If we researchers (or gamblers) who wanted to use the power of computers to simulate a lot of die rolls in a very short amount of time, and have the flexibility to tinker with the number of sides on our die without having to buy a brand new one, we could do this very easily with a new Ruby die class.  We would just create the class, ask the user to input the number of sides the die has, and then whenever it is told to “roll” it would just return a random number between 1 and the total number of sides.  Simple.  But very powerful nonetheless.
+        </p>
+        <p>
+          It’s important to understand that classes are just blueprints for objects, and objects are the real focal point of Ruby programs.  (Note: While Ruby classes are technically objects themselves, this can cause some confusion to beginners, so I will leave it to the textbooks to explain).  A class should outline the defining characteristics of an object, but not he specifics of it.  It should allow you to define the specifics when you create an instance of that class, and provide you with the toolkit to interact with it as appropriate.
+        </p>
+        <p>
+          Below is another example of a class you might use, this time showing the syntax you would use to construct it.  Here I’m creating a Movie class, which could help me keep track of all the movies I’ve seen.  I want the ability to create a new Movie object every time I see a new movie, tell it some key info about that movie, and then call up that information later whenever I want it.
+        </p>
+        <pre><code>
+          class Movie
+            attr_accessor :rating
+            attr_reader :title, :director
+            @@instance_collector = []
+
+            def initialize (title, director, year_released, year_seen, rating)
+              @@instance_collector << self
+              @title = title
+              @director = director
+              @year_released = year_released
+              @year_seen = year_seen
+              @rating = rating
+            end
+        </code></pre>
+        <p>
+          Here we start by creating a class called Movie, and use the built-in Ruby methods of <string class="code">attr_accessor</string> and <string class="code">attr_reader</string> to quickly allow us to read and change the movie rating, and just read the title and director information, respectively.  The <string class="code">:rating</string> syntax creates a Ruby symbol, which allows us to access the instance variables (beginning with a single @) by the same name.  Then we create an array using a class-level variable denoted by two @@ signs, called <string class="code">@@instance_collector</string>.  This is an array where we will store all the movie information we input later.
+        </p>
+        <p>
+          Next we create an initialize method which defines the information required in creating a new instance of the class (title, director, year released, etc.) and what happens automatically as soon as the class instance is created.  The first thing we do is push <string class="code">self</string> to the array we created.  Then we create instance variables of the information entered when instantiating the class, which allows us to reference them later in the program.  Finally we end our <string class="code">initialize</string> method, and can get on to the meat of the program.
+        </p>
+        <pre><code>
+          def summary
+            puts "#{@title} was directed by #{@director} and was released in
+            #{@year_released}."
+            puts "You first saw it in #{@year_seen} and rate it #{@rating} out of 5
+            stars."
+          end
+        </code></pre>
+        <p>
+          Here we create a summary method that allows us to get a quick output of all the information we've stored any given movie, in two neatly formatted strings.
+        </p>
+        <pre><code>
+            def self.rating(rating)
+              puts "Movies you've rated #{rating} out of 5 stars:"
+              @@instance_collector.map do |x|
+                if x.rating == rating
+                  puts "#{x.title}, directed by #{x.director}"
+                end
+              end
+            end
+          end
+        </code></pre>
+        <p>
+          Finally, we create a method <string class="code">rating</string> that can be called on the Movie class itself.  For every element in the <string class="code">@@instance_collector</string> array, we check whether its rating is equal to the rating entered in the method call, and if true, we print the name and director of that movie.  This provides a quick, easy way to see all the movies we've given a particular rating.
+        </p>
+        <p>
+          Now to test out our new class with some driver test code:
+        </p>
+        <pre><code>
+          waking_life = Movie.new("Waking Life", "Richard Linklater", 2001, 2005, 5)
+          magnolia = Movie.new("Magnolia", "P. T. Anderson", 1999, 2004, 4)
+          magnolia.summary
+
+          magnolia.rating = 5
+          magnolia.summary
+
+          Movie.rating(5)
+        </code></pre>
+        <p>
+          Here we create two instances of the new Movie class for two of my favorite movies.  <string class="code">magnolia.summary</string> outputs our summary string as expected.  But what if I decide I want to change one of my ratings at some point down the road?  We can use the <string class="code">attr_accessor</string> method to modify the rating of a given movie, and calling the summary method again proves this change has worked.  Finally a quick call of <string class="code">Movie.rating(5)</string> reveals a list of all the movies in our array with that rating -- in this case, both Magnolia and Waking Life.
+        </p>
+
+
+      </div>
+
+      <div class="separator"></div>
+
+      <!--#include file="../footer.html" -->
+
+    </div>
+
+
+  </body>
+</html>
