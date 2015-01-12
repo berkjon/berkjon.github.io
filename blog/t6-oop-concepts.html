@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/default.css" />
+    <title>Blocks, Procs and Lambdas</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <header>
+        <h1>Blocks, Procs and Lambdas</h1>
+        <h2>An overview for Ruby beginners</h2>
+      </header>
+
+      <div class="separator"></div>
+      <nav>
+        <a href="../index.html" alt="Home">Home</a> |
+        <a href="../blog/index.html" alt="Blog">Blog</a> |
+        <a href="../photography/index.html" alt="Photography">Photography</a> |
+        <a href="../travel/index.html" alt="Travel">Travel</a> |
+        <a href="../about/index.html" alt="About">About</a>
+      </nav>
+
+      <div class="blog_body">
+
+        <p>
+          The simplest way to understand Blocks, Procs and Lambdas in Ruby is as different ways of organizing code in our programs.  In computer science, they are all called "closures".  They have far more in common than they have apart, and Blocks are generally understood as the most basic of the three, so we will inspect them first.
+        </p>
+        <h3>Blocks</h3>
+        <p>
+          A block should already look familiar to anyone with a few weeks' Ruby programming, even if it is not recognized by that name.  Consider the following example:
+        </p>
+        <pre><code>
+          array = [0, 1, 2, 3] # Creating a new array of numbers
+          array.map! { |x| x * 5 }  # The block is everything in the {}
+          #=> Returns [0, 5, 10, 15]
+
+          # Below is an alternate syntax -- the block is everything inside the "do" and "end"
+          array.map! do |x|
+            x + 2
+          end
+          #=> Returns [2, 7, 12, 17]
+        </code></pre>
+        <p>
+          As noted in the comments, the block is contained inside the {} or "do" "end" words -- the only difference there being stylistic.  Typically we use the {} when the block can fit onto one line, and the "do" "end" syntax for anything longer.  Inside those wrappers we have our block of code, which performs whatever operation we want -- in this case, multiplying each element in the array by 5, or adding 2 to each element.  Pretty straightforward.
+        </p>
+        <h3>Procs</h3>
+        <p>
+          Procs (short for "procedures") are like blocks, but they have the added benefit of allowing you to assign a variable to them so you can use the same piece of code over again.  This can be very handy, and is very Ruby-esque, in helping to eliminate repetitive code from a program.  Rather than having to write the same block multiple times, you could simply assign it to a proc and just pass that to any method that accepts callable objects instead.  Let's see an example:
+        </p>
+        <pre><code>
+          array = [0, 1, 2, 3] # Creating a new array, same as before
+          times_5 = Proc.new { |x| x*5 } # Creates a new Proc instance
+          array.map!(&times_5) # Calls the map! function with our new Proc instance
+          #=> Returns [0, 5, 10, 15]
+          array.map!{&times_5) # Let's call it one more time
+          #=> Returns [0, 25, 50, 75]
+        </code></pre>
+        <p>
+          Here the same block of code instructing the array to multiply each element by 5 is assigned to a Proc instance that we've called <string class="code">times_5</string>.  Once we assign it, we now have a new Proc object to work with.  We can then pass it into our <string class="code">map!</string> function, adding the "&" symbol in front, to have it pass that block of code without us writing it.  And we can continue to do that as many times as we like.  While this example is intentionally very short, you can imagine how powerful this can be as the size of your blocks grows.  As an aside, Procs are a great example of what people mean whey they call Ruby an "object-oriented" language.  Being able to create code blocks and manipulate them as independent objects provides a lot of flexibility in your programming.
+        </p>
+        <h3>Lambdas</h3>
+        <p>
+          Finally, we have Lambdas, which are technically also Proc objects -- just with their own little twist.  An example illustrates best:
+        </p>
+        <pre><code>
+          lam_test = lambda { |x| x*5 } # Creates new lambda instance
+          lam_test.call(4) # Returns 20
+          lam_test.call(1,2) # Returns ArgumentError: wrong number of arguments (2 for 1)
+          lam_test.call # Returns ArgumentError: wrong number of arguments (0 for 1)
+        </code></pre>
+        <p>
+          As we see above, lambdas require you input the correct number of arguments -- in this example, one.  If you input more or less, you get an ArgumentError.  Procs do not behave this way -- if you pass a proc too many arguments, it just takes the first one(s) that it needs, and if you don't pass it any, it just returns nil.
+        </p>
+        <p>
+          And there is one other important difference between Procs and Lambdas worth mentioning -- how they handle <string class="code">returns</string>.
+        </p>
+        <pre><code>
+          def proc_example
+             Proc.new { return "Inside the Proc block" }
+             return "Outside the Proc block"
+          end
+
+          def lambda_example
+             lambda { return "Inside the Lambda block" }
+             return "Outside the Lambda block"
+          end
+
+          puts proc_example
+          puts lambda_example
+        </code></pre>
+        <p>
+          When we run this, we see that the proc_example returns <string class="code">Inside the Proc block</string>, whereas the lambda_example returns <string class="code">Outside the Lambda block</string>.  This example points to an underlying structural difference.  Lambdas act like traditional methods, both by requiring the correct number of arguments when being called, and by not overriding a <string class="code">return</string> made by the calling method.  A Proc, on the other hand, is more like a snippit of code, and supercedes a method return.
+        </p>
+
+      </div>
+
+      <div class="separator"></div>
+      <footer>
+        <a href="http://www.linkedin.com/in/jonberk" alt="LinkedIn">
+          <img class="logo" src="../imgs/logo/linkedin_bw_round.png" /></a>
+        <a href="http://www.twitter.com/berkjon" alt="Twitter">
+          <img class="logo" src="../imgs/logo/twitter_bw_round.png" /></a>
+        <a href="http://www.facebook.com/jonberk" alt="Facebook">
+          <img class="logo" src="../imgs/logo/fb_bw_round.png" /></a>
+        <a href="http://www.github.com/berkjon" alt="Github">
+          <img class="logo" src="../imgs/logo/github_bw_round.png" /></a>
+        <a href="http://www.goodreads.com/jonberk" alt="Goodreads">
+          <img class="logo" src="../imgs/logo/goodreads_bw_round.png" /></a>
+        <p>Copyright 2015</p>
+      </footer>
+
+    </div>
+
+
+  </body>
+</html>
