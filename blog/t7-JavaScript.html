@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/default.css" />
+    <title>JavaScript versus Ruby</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <header>
+        <h1>Ruby on Rails versus Node.js</h1>
+        <h2>A Back-end Comparison</h2>
+      </header>
+
+      <div class="separator"></div>
+      <nav>
+        <a href="../index.html" alt="Home">Home</a> |
+        <a href="../blog/index.html" alt="Blog">Blog</a> |
+        <a href="../photography/index.html" alt="Photography">Photography</a> |
+        <a href="../travel/index.html" alt="Travel">Travel</a> |
+        <a href="../about/index.html" alt="About">About</a>
+      </nav>
+      <div class="separator"></div>
+
+      <div class="blog_body">
+
+        <p>
+          This was our first week learning JavaScript at DBC, and we were asked to write a post comparing & constrating some aspect of it against Ruby.  I considered exploring something basic relating to the core language, like Ruby Hashes versus JavaScript Objects, or what my experience has been with the built-in functionality of Ruby and JavaScript.  But I found myself wanting to learn more about how these languages compare in their back-end frameworks, and things outside the core language functionality.  I spent several hours researching the subject and found a lot of interesting discussion, and some heated debate, online.  Bearing in mind I still have no personal experience with any back-end framework, and am only just beginning to grasp what a "framework" really is in the first place, I thought this would be a good opportunity for me to try and summarize my learnings -- from one beginner to any others.
+        </p>
+        <h3>The Obligatory Caveat</h3>
+        <p>
+          While developers LOVE comparing Node.js to Ruby on Rails, it seems it is nonetheless a bit of an apples-to-oranges comparison.  Node.js is not a framework, but rather a server written in JavaScript with a number of built-in capabilities.  To make it a fair comparison, Node.js should be bundled with something like <a href="http://www.expressjs.com" alt="Express">Express.js</a> and <a href="http://www.mongoosejs.com" alt="Mongoose">Mongoose</a>.  Express.js is a web application framework for Node.js, and Mongoose is an "elegant MongoDB object modeling" solution for Node.js.  But already this caveat is hinting at an important broader theme -- the pieces to build a full-stack JavaScript framework appear to be a bit more scattered and disjointed than those for a Ruby framework.
+        </p>
+        <h3>The Underlying Language</h3>
+        <p>
+          One of the frequently-cited advantages of Node.js is that it is built on JavaScript, which has been a must-know language for web developers for years.  People are already familiar with its core concepts, like its "event handling paradigm", and therefore do not have to conquer this learning curve all over again.  They only need to learn the new style of back-end programming.  Ruby, on the other hand, is not as well known to many, and the hurdle of learning a new language and framework simultaneously can make it less desirable to many.
+        </p>
+        <p>
+          Throughout most of its history, JavaScript was just a client-side language, used for front-end web development.  It ran in your browser and helped improve the functionality on your websites.  So when Node was introduced and JavaScript could suddenly be used as a language for back-end web servers, a lot of people understandably freaked out.  This language that was already so capable and robust on the front-end was suddenly a powerful tool on the back-end as well.  This means you can build a complete project using only one programming language
+        </p>
+        <p>
+          However, JavaScript is also a very flawed and haphazard language to some -- even its devotees.  Ruby, on the other hand, has a reputation for its elegance and clean appearance.  In my experience, Ruby has a great deal more built-in functionality than JavaScript, that takes a lot of the annoying leg-work out of programming.
+        </p>
+        <h3>Speed of Development</h3>
+        <p>
+          Almost universal consensus is that, when you want to build a Minimum Viable Product really quickly, Rails takes the cake.  A common acronym is CRUD -- Create, Read, Update and Delete.  If you want your users to have this functionality in your product as quickly as possible, you'd be better off using Rails, no matter how familiar you are with Node.js and JavaScript.  The process in Node.js has more steps, mainly due to the number of modules you'll need to find and include, and then teach how to interact with each other.  But on the plus side, this can give you more flexibility in building your application, and not require you to install things you might not use.
+        </p>
+        <h3>Nuts and Bolts: Processor Utilization, Speed and the Like</h3>
+        <p>
+          Node.js gets excellent marks for its overall speed and performance.  Much of this seems attributable to its "asynchronous event-based programming model".  While multiple process threads may be running at a given time, they are only used for asynchronous I/O purposes.  We can apparently thank Node's non-blocking I/O for significantly improved CPU utilization and reduction of bottlenecks.  I take all this to mean the processor is not really being occupied unless it actually needs to be.  When there is no event, the Node.js process just sits idly and waits.
+        </p>
+        <p>
+          Perhaps most importantly, Node.js is described as infinitely more "scalable" than Ruby.  And not just scalable in the horizontal way of passing excess processing work to remote servers, as Rails is claimed to do.  Node.js is naturally reactive at its core, which may prove to be its key advantage in the fight, as it is not clear to me that Rails can be rearchitected to achieve the same type of functionality.
+        </p>
+        <h3>Community & Support</h3>
+        <p>
+          While Rails has been around for many years and is generally considered the mature framework, many people also observe that it changes quickly enough to make the older documentation out-of-date after a year or two.  The general advice is to filter for articles posted within the last year when searching for help online, to make sure you're getting the best/newest solution possible.  So, a more mature language does not necessarily mean a more robust support community online.
+        </p>
+        <p>
+          Node.js also gets good marks for its community support and breadth/variety of custom modules, so this one may be a draw for now.
+        </p>
+
+
+      </div>
+
+      <div class="separator"></div>
+      <footer>
+        <a href="http://www.linkedin.com/in/jonberk" alt="LinkedIn">
+          <img class="logo" src="../imgs/logo/linkedin_bw_round.png" /></a>
+        <a href="http://www.twitter.com/berkjon" alt="Twitter">
+          <img class="logo" src="../imgs/logo/twitter_bw_round.png" /></a>
+        <a href="http://www.facebook.com/jonberk" alt="Facebook">
+          <img class="logo" src="../imgs/logo/fb_bw_round.png" /></a>
+        <a href="http://www.github.com/berkjon" alt="Github">
+          <img class="logo" src="../imgs/logo/github_bw_round.png" /></a>
+        <a href="http://www.goodreads.com/jonberk" alt="Goodreads">
+          <img class="logo" src="../imgs/logo/goodreads_bw_round.png" /></a>
+        <p>Copyright 2015</p>
+      </footer>
+
+    </div>
+
+
+  </body>
+</html>
