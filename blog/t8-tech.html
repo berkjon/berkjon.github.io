@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../stylesheets/default.css" />
+    <title>Recursion</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <header>
+        <h1>Recursion</h1>
+        <h2>"To understand recursion, you first must understand recursion"</h2>
+      </header>
+
+      <div class="separator"></div>
+      <nav>
+        <a href="../index.html" alt="Home">Home</a> |
+        <a href="../blog/index.html" alt="Blog">Blog</a> |
+        <a href="../photography/index.html" alt="Photography">Photography</a> |
+        <a href="../travel/index.html" alt="Travel">Travel</a> |
+        <a href="../about/index.html" alt="About">About</a>
+      </nav>
+      <div class="separator"></div>
+
+      <div class="blog_body">
+
+        <p>
+          In its broadest terms, recursion is any process that repeats in a self-similar way.  Many examples appear in nature, from plants to shells to snowflakes.  Fractals are examples of recursion, as is what you see when you face two mirrors directly at one another.  While recursive processes in the analog world are just curiosities to most of us, in mathematics and computer science, they are fundamental concepts on which much is based.
+        </p>
+        <p>
+          One of the most common and easily understood examples of recursion is the Fibonacci sequence, which begins 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ... to Infinity.  What if we wanted to write a program in Ruby that told us what the 15th Fibonacci number was?  The easiest way to do this would be through a recursive method that calls upon itself each time upon executing.  Let's see it in code:
+        </p>
+        <pre><code>
+        def fibonacci(n)
+           n <= 1 ? n :  fibonacci( n - 1 ) + fibonacci( n - 2 )
+        end
+        puts fibonacci(15)
+        => 610
+        </code></pre>
+        <p>
+          What's happening here?  In the first part of the conditional statement we check whether the input number is less than or equal to 1, and if so, just return that number.  That covers our beginning cases, because an input of '0' or '1' would fail if we applied the typical Fibonacci logic to them.  However if the number is greater than 1, we can run the loop, and recursively call on the <string class="code">fibonacci</string> method we are in the process of defining.  It can make your head hurt thinking about it, and I admit there is some element of it that still surprises and amazes me a little bit.  But there it is -- it works.
+        </p>
+        <p>
+          In practice, recursion might not be the best way to calculate Fibonacci numbers because the recursie tree that builds will become too large at relatively low numbers, causing the execution to hang up (mine fails around '35' using the above code).  This is due to the memory limitations, as each method call requires its own memory space, which quickly grows unwieldy as the input number grows.  Recursion is therefore not appropriate in many scenarios -- while it may be the most elegant solution mathematically, it can be dangerous to employ in practice.
+        </p>
+        <p>
+          Let's consider one other, safer example of a recursive loop in Ruby:
+        </p>
+        <pre><code>
+        def fact(n)
+          return 1 if (0..1).include?(n)
+          n * fact(n - 1)
+        end
+        puts fact(8)
+        => 40320
+        </code></pre>
+        <p>
+          Here we calculate the Factorial of a number by calling on the <string class="code">factorial</string> function we are defining.  Interestingly, this function does not cause the same sort of memory overflow issues as the prior if you input the same size number.
+        </p>
+
+      </div>
+
+      <div class="separator"></div>
+      <footer>
+        <a href="http://www.linkedin.com/in/jonberk" alt="LinkedIn">
+          <img class="logo" src="../imgs/logo/linkedin_bw_round.png" /></a>
+        <a href="http://www.twitter.com/berkjon" alt="Twitter">
+          <img class="logo" src="../imgs/logo/twitter_bw_round.png" /></a>
+        <a href="http://www.facebook.com/jonberk" alt="Facebook">
+          <img class="logo" src="../imgs/logo/fb_bw_round.png" /></a>
+        <a href="http://www.github.com/berkjon" alt="Github">
+          <img class="logo" src="../imgs/logo/github_bw_round.png" /></a>
+        <a href="http://www.goodreads.com/jonberk" alt="Goodreads">
+          <img class="logo" src="../imgs/logo/goodreads_bw_round.png" /></a>
+        <p>Copyright 2015</p>
+      </footer>
+
+    </div>
+
+
+  </body>
+</html>
