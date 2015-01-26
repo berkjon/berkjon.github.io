@@ -28,10 +28,16 @@
       <div class="blog_body">
 
         <p>
-          In its broadest terms, recursion is any process that repeats in a self-similar way.  Many examples appear in nature, from plants to shells to snowflakes.  Fractals are examples of recursion, as is what you see when you face two mirrors directly at one another.  While recursive processes in the analog world are just curiosities to most of us, in mathematics and computer science, they are fundamental concepts on which much is based.
+          In its broadest terms, recursion is any process that repeats in a self-similar way.  Many examples appear in nature, from plants to shells to snowflakes.  Fractals are examples of recursion, as is what you see when you face two mirrors directly at one another.  While recursive processes in the analog world are just curiosities to most of us, in mathematics and computer science, they are fundamental concepts allowing us to elegantly perform a wide range of functions and operations.
         </p>
         <p>
-          One of the most common and easily understood examples of recursion is the Fibonacci sequence, which begins 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ... to Infinity.  What if we wanted to write a program in Ruby that told us what the 15th Fibonacci number was?  The easiest way to do this would be through a recursive method that calls upon itself each time upon executing.  Let's see it in code:
+          The primary attraction of recursion in programming is that it allows us to take a big problem and break it down into smaller and smaller pieces.  Think of it like a tree, and when each of the problems at the tiniest branches are solved, those answers feed into the calculation one level up, which in turn feeds the calculation above it, all the way back to the very first branch.
+        </p>
+        <p>
+          It's important to mention that any problem that can be solved recursively can also be solved with standard Ruby iterators, like a while loop.  It just might not be an elegant a solution.  But recursion can also be dangerous, because all the branching and recrusive method calls require additional memory space, which can quickly overflow the memory stack if you're not careful.  If a problem requires breaking down into too many pieces, it might not be a good candidate for recursion due to the memory limitations.  (As an aside, there is also a computer science technique called tail call optimization which can reduce or eliminate the memory overflow problems caused by recursion, but this is not supported in Ruby by default).
+        </p>
+        <p>
+          The favorite example of recursion in programming seems to be the Fibonacci sequence, which begins 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ... to Infinity.  Each number is the sum of the two numbers preceeding it.  What if we wanted to write a program in Ruby that told us what the 15th Fibonacci number was?  An easy approach to this, and one which avoids the need for iterative loops, is employing a recursive method that calls upon itself each time upon executing.  Let's see it in code:
         </p>
         <pre><code>
         def fibonacci(n)
@@ -41,25 +47,32 @@
         => 610
         </code></pre>
         <p>
-          What's happening here?  In the first part of the conditional statement we check whether the input number is less than or equal to 1, and if so, just return that number.  That covers our beginning cases, because an input of '0' or '1' would fail if we applied the typical Fibonacci logic to them.  However if the number is greater than 1, we can run the loop, and recursively call on the <string class="code">fibonacci</string> method we are in the process of defining.  It can make your head hurt thinking about it, and I admit there is some element of it that still surprises and amazes me a little bit.  But there it is -- it works.
+          What's happening here?  In the first part of the conditional statement we check whether the input number is less than or equal to 1, and if so, just return that number.  That covers our beginning cases, because an input of '0' or '1' would fail if we applied the typical Fibonacci logic to them.  However if the number is greater than 1, we can run the loop, and recursively call on the <string class="code">fibonacci</string> method we are in the process of defining.  It can make your head hurt thinking about it, and I admit there is some element of it that still surprises and amazes me.  But there it is -- it works, beautifully.
         </p>
         <p>
-          In practice, recursion might not be the best way to calculate Fibonacci numbers because the recursie tree that builds will become too large at relatively low numbers, causing the execution to hang up (mine fails around '35' using the above code).  This is due to the memory limitations, as each method call requires its own memory space, which quickly grows unwieldy as the input number grows.  Recursion is therefore not appropriate in many scenarios -- while it may be the most elegant solution mathematically, it can be dangerous to employ in practice.
+          In practice however, recursion is not the best way to calculate Fibonacci numbers in Ruby due to the memory overflow issues described above.  My system gets hung processing any number greater than 35.
         </p>
         <p>
-          Let's consider one other, safer example of a recursive loop in Ruby:
+          Let's look at one more popular example of recursion:
         </p>
         <pre><code>
         def fact(n)
-          return 1 if (0..1).include?(n)
-          n * fact(n - 1)
+          n = 0 ? 1 : n * fact(n-1)
         end
         puts fact(8)
         => 40320
         </code></pre>
         <p>
-          Here we calculate the Factorial of a number by calling on the <string class="code">factorial</string> function we are defining.  Interestingly, this function does not cause the same sort of memory overflow issues as the prior if you input the same size number.
+          Here we calculate the Factorial of a number by calling on the <string class="code">factorial</string> function we are defining.  The first part of the method definition describes the "base case", i.e. the point at which the recursive loop should stop.  The code after the : contains the recursion, calling upon the method being defined.  Interestingly, this method does not cause the same stack overflow issues that the fibonacci loop created.  If we wanted to solve this same challenge without recursion, we could use an <string class="code">inject</string> loop instead:
         </p>
+        <pre><code>
+          def fact(n)
+            (1..n).inject {|result, n| result*n}
+          end
+          puts fact(8)
+          => 40320
+        </code></pre>
+
 
       </div>
 
